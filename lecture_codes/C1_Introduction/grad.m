@@ -1,5 +1,7 @@
 function [grad_f] = grad(f, x, order, varargin)
-%grad Gradient of the function f by finite differences
+% Calculate gradient of the function f by finite differences
+% Test call: grad_f = grad(@f_quadratic, [1;2], 1, 1e-4)
+% Arguments:
 % f: function handle to the input function
 % x: the value of x at which gradient of f is to be evaluated
 % order: the order of finite difference gradient to be used
@@ -51,5 +53,5 @@ elseif order == 4
     grad_f = (- f_x_plus_2h + 8 .* f_x_plus_h - 8 .* f_x_minus_h + ... 
                 f_x_minus_2h) ./ (12 * h);
 end
-% end
+end
 
