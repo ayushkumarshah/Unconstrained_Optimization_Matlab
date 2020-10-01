@@ -31,21 +31,19 @@ f_x_plus_h = zeros(size(x));
 f_x_minus_h = zeros(size(x));
 f_x_plus_2h = zeros(size(x));
 f_x_minus_2h = zeros(size(x));
+for i=1: n
+    f_x_plus_h(i) = f(x + h * e(:,i));  
+end
 
 if order == 1
-    for i=1: n
-        f_x_plus_h(i) = f(x + h * e(:,i));  
-    end
     grad_f = (f_x_plus_h - f_x) ./ h;
 elseif order == 2
     for i=1: n
-        f_x_plus_h(i) = f(x + h * e(:,i));
         f_x_minus_h(i) = f(x - h * e(:,i));
     end
     grad_f = (f_x_plus_h - f_x_minus_h) ./ (2 * h);
 elseif order == 4
     for i=1: n
-        f_x_plus_h(i) = f(x + h * e(:,i));
         f_x_minus_h(i) = f(x - h * e(:,i));
         f_x_plus_2h(i) = f(x + 2 * h * e(:,i));
         f_x_minus_2h(i) = f(x - 2 * h * e(:,i));
