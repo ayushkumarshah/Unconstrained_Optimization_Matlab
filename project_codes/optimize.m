@@ -42,5 +42,3 @@ plot_err(errors_fun2_n, method2, figname2);
 % % Newton's method
 % [x_opt_fun3_n, f_opt_fun3_n, errors_fun3_n] = newton(@fun3, @g_fun3, @h_fun3, x3, N, delta);
 % plot_err(errors_fun3_n, method2, figname3);
-
-
