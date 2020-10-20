@@ -15,7 +15,7 @@ while n < N && diff > delta
     alpha = back_track_line(f, g, p, x_opt);
     x = x_opt + alpha * p;
     if nargin > 6
-        diff = abs(f(x) - f(varargin{7}));
+        diff = abs(f(x) - f(varargin{1}));
     else
         diff = abs(f(x) - f(x_opt));
     end
