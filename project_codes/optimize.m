@@ -45,9 +45,14 @@ plot_err(errors_fun2_qn, method3, figname2);
 
 % Function 3
 % % Gradient descent
-% [x_opt_fun3_gd, f_opt_fun3_gd, errors_fun3_gd] = grad_descent(@fun3, @g_fun3, x3, N, delta);
+% [x_opt_fun3_gd, f_opt_fun3_gd, errors_fun3_gd, x_list_fun3_gd] = grad_descent(@fun3, @g_fun3, x3, N, delta);
 % plot_err(errors_fun3_gd, method1, figname3);
 
+% To plot steps since only 2 dimensions
+% plot_steps(x_list_fun3_gd)
+
 % % Newton's method
-% [x_opt_fun3_n, f_opt_fun3_n, errors_fun3_n] = newton(@fun3, @g_fun3, @h_fun3, x3, N, delta);
+% [x_opt_fun3_n, f_opt_fun3_n, errors_fun3_n, x_list_fun3_n] = newton(@fun3, @g_fun3, @h_fun3, x3, N, delta);
 % plot_err(errors_fun3_n, method2, figname3);
+% plot_steps(x_list_fun3_n)
+

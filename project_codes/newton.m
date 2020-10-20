@@ -1,4 +1,4 @@
-function [x_opt, f_opt, errors] = newton(f, g, H, x, N, delta, varargin)
+function [x_opt, f_opt, errors, x_list] = newton(f, g, H, x, N, delta, varargin)
 % Newton optimization method with line search
 % Example call: newton(@f_exp, @g_exp, @h_exp, [2;1], 1000, 1e-3);
 
@@ -6,6 +6,8 @@ diff = Inf;
 errors = [];
 n = 0;
 x_opt = x;
+x_list = [];
+x_list(:,1) = x_opt;
 if nargin == 9
     alpha_i = varargin{1};
     c = varargin{2};
@@ -31,6 +33,7 @@ while n < N && diff > delta
     end
     errors(n) = diff;
     x_opt = x;  
+    x_list(:, n+1) = x_opt;
 end
 f_opt = f(x_opt);
 end
