@@ -1,4 +1,5 @@
 function H = H_fun3(x)
 % hessian of poloynomial function
 
-H = [402+400.*x(2,:) 400.*x(1,:); -400.*x(1,:) 200]; % 2x2 metrix
+H = [-400*x(2,:)+1200*x(1,:).^2+2,  -400*x(1,:); 
+     -400*x(1,:), 200];
