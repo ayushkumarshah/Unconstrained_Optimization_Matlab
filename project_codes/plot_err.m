@@ -1,14 +1,11 @@
-function plot_err(errors, method, figname)
+function plot_err(errors,  method_name, function_name)
 figure;
 lw = 3;
 plot(errors, 'LineWidth', lw);
-title(method + ": Errors");
+title(method_name + ": Errors on " +function_name);
 xlabel("Iterations");
 ylabel("Errors: |f(k) - f(k-1)|");
-if figname ~= "None"
-    figpath = '../plots/' + method + ' ' + figname + '.png';
-    saveas(gcf, figpath);
-    fprintf('Optimization Plot written to %s \n \n', figpath);
+figpath = '../plots/' + method_name + ' ' + function_name + '.png';
+saveas(gcf, figpath);
+fprintf('Optimization Plot written to %s \n \n', figpath);
 end
-end
-
