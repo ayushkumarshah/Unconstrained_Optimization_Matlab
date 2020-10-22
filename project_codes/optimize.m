@@ -1,58 +1,111 @@
-% Main file
-N = 1000;
-N2 = 100;
-delta = 1e-3;
-delta2 = 1e-1;
+% Run experiments
+fun_names = ["fun1", "fun2", "fun3"];
+method_names = ["Gradient Descent Method", "Newton's method", "Quasi-Newton's Method"];
 
+% Default Parameters
+N = [1000, 300, 1000];
+delta = [1e-4, 1e-2, 1e-4];
 x1 = ones(100, 1) * 50; 
-x2 = ones(100, 1) * 1; 
-x3 = [];
+x2 = ones(100, 1) * 0.1; 
+x3 = [50; 50];
+default_params = {1, 0.1, 0.5};
 
-method1 = "Gradient's Descent Method";
-method2 = "Newton's Method";
-method3 = "Quasi-Newton's Method";
+% Defining range of line search parameters for grid search
+alpha_i = linspace(0.1, 1, 5);
+c = linspace(0.1, 0.9, 6);
+rho = linspace(0.1, 0.9, 6);
 
-figname1 = "fun1";
-figname2 = "fun2";
-figname3 = "fun3";
+% Create grid for line search parameters
+grid_params = create_grid(alpha_i, c, rho);
 
 % Function 1
+
 % Gradient descent
-[x_opt_fun1_gd, f_opt_fun1_gd, errors_fun1_gd] = grad_descent(@fun1, @g_fun1, x1, N, delta, zeros(100, 1), 1, 0.1, 0.5);
-% OR [x_opt_fun1_gd, f_opt_fun1_gd, errors_fun1_gd] = grad_descent(@fun1, @g_fun1, x1, N, delta, zeros(100, 1));
-plot_err(errors_fun1_gd, method1, figname1);
+fprintf('%s on %s\n', method_names(1), fun_names(1));
+% Grid search
+for i=1:length(grid_params)
+    params = grid_params{i};
+    [x_opt, f_opt, errors, x_list] = grad_descent(@fun1, @g_fun1, x1, N(1), delta(1), 0, params{:});
+    exp.fun1.grad_desc(i).params = params;
+    exp.fun1.grad_desc(i).outputs = {x_opt, f_opt, errors, length(errors), errors(length(errors)), x_list};
+end
+[best_results, best_params, errors_df] = get_best_results(exp.fun1.grad_desc);
+fprintf('Best parameters:\nalpha_i = %f\tc=%f\trho=%f\n\n',best_params{1}, best_params{2}, best_params{3});
+fprintf('Best results:\nf_opt = %f\tsteps=%d\tfinal error=%f\n\n',best_results{2}, best_results{4}, best_results{5});
+plot_err(best_results{3}, method_names(1), fun_names(1));
 
 % Newton's method
-[x_opt_fun1_n, f_opt_fun1_n, errors_fun1_n] = newton(@fun1, @g_fun1, @H_fun1, x1, N, delta, zeros(100, 1));
-plot_err(errors_fun1_n, method2, figname1);
+[x_opt, f_opt, errors, x_list] = newton(@fun1, @g_fun1, @H_fun1, x1, N(1), delta(1), 0);
+exp.fun1.newton.params = default_params;
+exp.fun1.newton.outputs = {x_opt, f_opt, errors, length(errors), errors(length(errors))};
+fprintf('%s on %s\n\n', method_names(2), fun_names(1));
+fprintf('Parameters:\nalpha_i = %f\tc=%f\trho=%f\n\n',default_params{1}, default_params{2}, default_params{3});
+fprintf('Results:\nf_opt = %f\tsteps=%d\tfinal error=%f\n\n',f_opt, length(errors), errors(length(errors)));
+plot_err(errors, method_names(2), fun_names(1));
 
 % Quasi-Newton's method
-[x_opt_fun1_qn, f_opt_fun1_qn, errors_fun1_qn] = q_newton(@fun1, @g_fun1, x1, N, delta, zeros(100, 1));
-plot_err(errors_fun1_qn, method3, figname1);
+[x_opt, f_opt, errors, x_list] = q_newton(@fun1, @g_fun1, x1, N(1), delta(1), 0);
+exp.fun1.q_newton.params = default_params;
+exp.fun1.q_newton.outputs = {x_opt, f_opt, errors, length(errors), errors(length(errors))};
+fprintf('%s on %s\n\n',method_names(3), fun_names(1));
+fprintf('Parameters:\nalpha_i = %f\tc=%f\trho=%f\n\n',default_params{1}, default_params{2}, default_params{3});
+fprintf('Results:\nf_opt = %f\tsteps=%d \tfinal error=%f\n\n',f_opt, length(errors), errors(length(errors)));
+plot_err(errors, method_names(3), fun_names(1));
 
 % Function 2
 % Gradient descent
-[x_opt_fun2_gd, f_opt_fun2_gd, errors_fun2_gd] = grad_descent(@fun2, @g_fun2, x2, N2, delta2);
-plot_err(errors_fun2_gd, method1, figname2);
-
-% Newton's method
-[x_opt_fun2_n, f_opt_fun2_n, errors_fun2_n] = newton(@fun2, @g_fun2, @H_fun2, x2, N2, delta2);
-plot_err(errors_fun2_n, method2, figname2);
-
-% Quasi-Newton's method
-[x_opt_fun2_qn, f_opt_fun2_qn, errors_fun2_qn] = q_newton(@fun2, @g_fun2, x2, N2, delta2);
-plot_err(errors_fun2_qn, method3, figname2);
+% [x_opt, f_opt, errors] = grad_descent(@fun2, @g_fun2, x2, N(2), delta(2));
+% exp.fun2.grad_descent.params = default_params;
+% exp.fun2.grad_descent.outputs = {x_opt, f_opt, errors, length(errors), errors(length(errors))};
+% plot_err(errors, method_names(1), fun_names(2));
+% 
+% % Newton's method
+% [x_opt, f_opt, errors] = newton(@fun2, @g_fun2, @H_fun2, x2, N(2), delta(2));
+% % exp.fun2.grad_descent.params = params;
+% exp.fun2.newton.outputs = {x_opt, f_opt, errors, length(errors), errors(length(errors))};
+% plot_err(errors, method_names(2), fun_names(2));
+% 
+% % Quasi-Newton's method
+% [x_opt, f_opt, errors] = q_newton(@fun2, @g_fun2, x2, N(2), delta(2));
+% % exp.fun2.grad_descent.params = params;
+% exp.fun2.q_newton.outputs = {x_opt, f_opt, errors, length(errors), errors(length(errors))};
+% plot_err(errors, method_names(3), fun_names(2));
 
 % Function 3
-% % Gradient descent
-% [x_opt_fun3_gd, f_opt_fun3_gd, errors_fun3_gd, x_list_fun3_gd] = grad_descent(@fun3, @g_fun3, x3, N, delta);
-% plot_err(errors_fun3_gd, method1, figname3);
 
-% To plot steps since only 2 dimensions
-% plot_steps(x_list_fun3_gd)
+% Gradient descent
+fprintf('%s on %s\n', method_names(1), fun_names(3));
+% Grid search
+for i=1:length(grid_params)
+    params = grid_params{i};
+    [x_opt, f_opt, errors, x_list] = grad_descent(@fun3, @g_fun3, x3, N(3), delta(3), params{:});
+    exp.fun3.grad_desc(i).params = params;
+    exp.fun3.grad_desc(i).outputs = {x_opt, f_opt, errors, length(errors), errors(length(errors)), x_list};
+end
+[best_results, best_params, errors_df] = get_best_results(exp.fun3.grad_desc);
+fprintf('Best parameters:\nalpha_i = %f\tc=%f\trho=%f\n\n',best_params{1}, best_params{2}, best_params{3});
+fprintf('Best results:\nf_opt = %f\tsteps=%d\tfinal error=%f\n\n',best_results{2}, best_results{4}, best_results{5});
+plot_err(best_results{3}, method_names(1), fun_names(3));
+plot_steps(best_results{6}, method_names(1), fun_names(3));
 
-% % Newton's method
-% [x_opt_fun3_n, f_opt_fun3_n, errors_fun3_n, x_list_fun3_n] = newton(@fun3, @g_fun3, @h_fun3, x3, N, delta);
-% plot_err(errors_fun3_n, method2, figname3);
-% plot_steps(x_list_fun3_n)
+% Newton's method
+[x_opt, f_opt, errors, x_list] = newton(@fun3, @g_fun3, @H_fun3, x3, N(3), delta(3));
+exp.fun3.newton.params = default_params;
+exp.fun3.newton.outputs = {x_opt, f_opt, errors, length(errors), errors(length(errors))};
+fprintf('%s on %s\n\n', method_names(2), fun_names(3));
+fprintf('Parameters:\nalpha_i = %f\tc=%f\trho=%f\n\n',default_params{1}, default_params{2}, default_params{3});
+fprintf('Results:\nf_opt = %f\tsteps=%d\tfinal error=%f\n\n',f_opt, length(errors), errors(length(errors)));
+plot_err(errors, method_names(2), fun_names(3));
+plot_steps(x_list, method_names(2), fun_names(3));
+
+% Quasi-Newton's method
+[x_opt, f_opt, errors, x_list] = q_newton(@fun3, @g_fun3, x3, N(3), delta(3));
+exp.fun3.q_newton.params = default_params;
+exp.fun3.q_newton.outputs = {x_opt, f_opt, errors, length(errors), errors(length(errors))};
+fprintf('%s on %s\n\n',method_names(3), fun_names(3));
+fprintf('Parameters:\nalpha_i = %f\tc=%f\trho=%f\n\n',default_params{1}, default_params{2}, default_params{3});
+fprintf('Results:\nf_opt = %f\tsteps=%d \tfinal error=%f\n\n',f_opt, length(errors), errors(length(errors)));
+plot_err(errors, method_names(3), fun_names(3));
+plot_steps(x_list, method_names(3), fun_names(3));
+
 
