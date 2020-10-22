@@ -27,7 +27,7 @@ while n < N && diff > delta
     end
     x = x_opt + alpha * p;
     if nargin == 6 || nargin == 9
-        diff = abs(f(x) - f(varargin{1}));
+        diff = abs(f(x) - varargin{1});
     else
         diff = abs(f(x) - f(x_opt));
     end

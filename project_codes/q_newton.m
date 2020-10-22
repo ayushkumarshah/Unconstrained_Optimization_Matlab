@@ -28,14 +28,11 @@ while n < N && diff > delta
     end
     x = x_opt + alpha * p;
     if nargin == 6 || nargin == 9
-        diff = abs(f(x) - f(varargin{1}));
+        diff = abs(f(x) - varargin{1});
     else
         diff = abs(f(x) - f(x_opt));
     end
     errors(n) = diff;
-    line(vertcat(x_opt(1), x(1)), vertcat(x_opt(2), x(2)));
-    hold on;
-    plot(x(1), x(2), 'o');
     s = x - x_opt;
     y = g(x) - g(x_opt);
     F = F + ((y' * (F * y + s) * s * s') / (y' * s) ^ 2) - ((s * y' * F + F * y * s') / (y' * s));
@@ -43,8 +40,6 @@ while n < N && diff > delta
     x_list(:, n+1) = x_opt;   
 end
 f_opt = f(x_opt);
-figure;
-plot(errors);
 end
 
 
