@@ -1,5 +1,5 @@
-function [best_results, best_params, errors_df] = get_best_results(grid_params, grid_outputs)
-exp_count = length(grid_params);
+function [best_results, best_params, errors_df] = get_best_results2(exp_results)
+exp_count = length(exp_results);
 f_opts = zeros(exp_count, 1);
 steps = zeros(exp_count, 1);
 final_errors = zeros(exp_count, 1);
@@ -8,9 +8,9 @@ c = zeros(exp_count, 1);
 rho = zeros(exp_count, 1);
 
 for i=1:exp_count
-    params = grid_params{i};
+    params = exp_results(i).grid_params;
     [alpha_i(i), c(i), rho(i)] = params{:};
-    outputs = grid_outputs{i};
+    outputs = exp_results(i).grid_outputs;
     f_opts(i) = outputs{2};
     steps(i) = outputs{4};
     final_errors(i) = outputs{5};
@@ -22,7 +22,7 @@ disp(errors_df(1:10,:));
 
 % Best results
 [~, min_idx] = min(f_opts);
-best_results = grid_outputs{min_idx};
+best_results = exp_results(min_idx).grid_outputs;
 
 % Best parameters
-best_params = grid_params{min_idx};
+best_params = exp_results(min_idx).grid_params;
