@@ -1,0 +1,189 @@
+>> exp = optimize("fun1", "fun2", "fun3");
+Gradient Descent Method on fun1
+Performing grid search ...
+
+Grid search results: Top 10 by f_opts
+
+    alpha_i     c      rho       f_opts      steps    final_errors
+    _______    ____    ____    __________    _____    ____________
+
+         1     0.58     0.9    6.2011e-05      92      6.2011e-05 
+         1     0.74     0.9    6.3572e-05     156      6.3572e-05 
+      0.55     0.58     0.9    6.4723e-05     114      6.4723e-05 
+      0.55     0.74    0.74    7.3978e-05     203      7.3978e-05 
+     0.325      0.9     0.9    7.4492e-05     219      7.4492e-05 
+       0.1     0.74     0.9    7.6335e-05     171      7.6335e-05 
+       0.1      0.9     0.9    7.7668e-05     233      7.7668e-05 
+         1     0.42    0.42    8.0735e-05     160      8.0735e-05 
+     0.775      0.9    0.42    8.1171e-05     299      8.1171e-05 
+     0.775     0.58     0.9    8.1862e-05      98      8.1862e-05 
+
+Best parameters:
+alpha_i = 1.000000 	c=0.580000 	rho=0.900000
+
+Best results:
+f_opt = 0.000062	steps=92	final error=0.000062 
+total time=0.022105 sec 	time per iteration=0.000240 sec
+
+Optimization Plot written to ../plots/Gradient Descent Method fun1.png 
+ 
+Newton's method on fun1
+
+Parameters:
+alpha_i = 1.000000	c=0.100000	rho=0.500000
+
+Results:
+f_opt = 0.000000	steps=1	final error=0.000000 
+total time=0.001410 sec 	time per iteration=0.001410 sec
+
+Optimization Plot written to ../plots/Newton's method fun1.png 
+ 
+Quasi-Newton's Method on fun1
+
+Performing grid search ...
+
+Grid search results: Top 10 by f_opts
+
+    alpha_i     c      rho       f_opts      steps    final_errors
+    _______    ____    ____    __________    _____    ____________
+
+         1      0.1     0.9    8.8795e-08     117      8.8795e-08 
+         1      0.1     0.1    2.2357e-06     114      2.2357e-06 
+     0.775     0.58    0.42    5.6783e-06     114      5.6783e-06 
+         1     0.26     0.1    6.2259e-06     114      6.2259e-06 
+         1     0.42     0.1    7.2281e-06     114      7.2281e-06 
+      0.55     0.26     0.1    2.4664e-05     120      2.4664e-05 
+      0.55     0.26    0.26    2.7143e-05     113      2.7143e-05 
+       0.1      0.1    0.58    2.7484e-05     113      2.7484e-05 
+     0.775      0.1    0.42     2.875e-05      99       2.875e-05 
+      0.55     0.42     0.1    2.8901e-05     121      2.8901e-05 
+
+Parameters:
+alpha_i = 1.000000	c=0.100000	rho=0.900000
+
+Results:
+f_opt = 0.000000	steps=117	final error=0.000000 
+total time=0.048935 sec 	time per iteration=0.000418 sec
+
+Optimization Plot written to ../plots/Quasi-Newton's Method fun1.png 
+ 
+Gradient Descent Method on fun2
+Best parameters:
+alpha_i = 1.000000 	c=0.100000 	rho=0.500000
+
+Best results:
+f_opt = -2440.219455	steps=300	final error=0.012804 
+total time=301.782423 sec 	time per iteration=1.005941 sec
+
+Optimization Plot written to ../plots/Gradient Descent Method fun2.png 
+ 
+Newton's method on fun2
+
+Parameters:
+alpha_i = 1.000000	c=0.100000	rho=0.500000
+
+Results:
+f_opt = -2443.244762	steps=15	final error=0.008915 
+total time=6.212515 sec 	time per iteration=0.414168 sec
+
+Optimization Plot written to ../plots/Newton's method fun2.png 
+ 
+Quasi-Newton's Method on fun2
+
+Parameters:
+alpha_i = 1.000000	c=0.100000	rho=0.500000
+
+Results:
+f_opt = -2443.207609	steps=57	final error=0.008309 
+total time=43.474292 sec 	time per iteration=0.762707 sec
+
+Optimization Plot written to ../plots/Quasi-Newton's Method fun2.png 
+ 
+Gradient Descent Method on fun3
+Performing grid search ...
+
+Grid search results: Top 10 by f_opts
+
+    alpha_i     c      rho     f_opts    steps    final_errors
+    _______    ____    ____    ______    _____    ____________
+
+       0.1      0.1     0.1    35.778     22       9.0264e-05 
+         1      0.1     0.1    35.778     22       9.0264e-05 
+     0.325     0.26     0.9     36.76     14       6.1556e-05 
+      0.55     0.26     0.9    36.764     14       6.1919e-05 
+     0.775     0.26    0.58    36.829      6       5.3833e-05 
+         1      0.1    0.42    36.877     10       3.2309e-05 
+         1     0.26    0.42    36.877     10       3.2309e-05 
+       0.1     0.26     0.9    36.976     13       8.9529e-05 
+         1     0.26     0.9    37.069     15       6.2637e-05 
+      0.55     0.26     0.1    37.103     39       8.7018e-05 
+
+Best parameters:
+alpha_i = 0.100000 	c=0.100000 	rho=0.100000
+
+Best results:
+f_opt = 35.778311	steps=22	final error=0.000090 
+total time=0.004341 sec 	time per iteration=0.000197 sec
+
+Optimization Plot written to ../plots/Gradient Descent Method fun3.png 
+ 
+Newton's method on fun3
+
+Parameters:
+alpha_i = 1.000000	c=0.100000	rho=0.500000
+
+Results:
+f_opt = 0.000000	steps=130	final error=0.000011 
+total time=0.017100 sec 	time per iteration=0.000132 sec
+
+Optimization Plot written to ../plots/Newton's method fun3.png 
+ 
+Quasi-Newton's Method on fun3
+
+Performing grid search ...
+
+Grid search results: Top 10 by f_opts
+
+    alpha_i     c      rho       f_opts      steps    final_errors
+    _______    ____    ____    __________    _____    ____________
+
+         1      0.1    0.74     2.134e-07     202      1.2138e-05 
+         1     0.42     0.1    2.7665e-07     565      8.7509e-06 
+         1     0.42    0.26     4.125e-07     216      1.8588e-05 
+         1      0.1    0.26    4.6109e-07     131      2.4136e-05 
+         1      0.1     0.9    5.1693e-07     239       2.218e-05 
+     0.775     0.42     0.9    5.3851e-07     163      1.8616e-05 
+         1     0.26    0.26    7.7814e-07     214      2.0688e-05 
+     0.775      0.1    0.42    9.7434e-07     180      1.0821e-05 
+     0.775     0.26    0.74    1.0853e-06     115      6.0541e-05 
+     0.775     0.58    0.58    1.5026e-06     219      2.2215e-05 
+
+Parameters:
+alpha_i = 1.000000	c=0.100000	rho=0.740000
+
+Results:
+f_opt = 0.000000	steps=202	final error=0.000012 
+total time=0.021020 sec 	time per iteration=0.000104 sec
+
+Optimization Plot written to ../plots/Quasi-Newton's Method fun3.png 
+ 
+Steps Plot written to ../plots/Gradient Descent Method fun3_steps.png 
+ 
+Steps Plot written to ../plots/Newton's method fun3_steps.png 
+ 
+Steps Plot written to ../plots/Quasi-Newton's Method fun3_steps.png 
+ 
+>> plot_steps(exp.fun3.grad_descent.outputs{6}, method_names(1), "fun3");
+    plot_steps(exp.fun3.newton.outputs{6}, method_names(2), "fun3");
+    plot_steps(exp.fun3.q_newton.outputs{6}, method_names(3), "fun3");
+Unrecognized function or variable 'method_names'.
+ 
+>> method_names = ["Gradient Descent Method", "Newton's method", "Quasi-Newton's Method"];
+>> plot_steps(exp.fun3.grad_descent.outputs{6}, method_names(1), "fun3");
+Steps Plot written to ../plots/Gradient Descent Method fun3_steps.png 
+ 
+>> plot_steps(exp.fun3.newton.outputs{6}, method_names(2), "fun3");
+Steps Plot written to ../plots/Newton's method fun3_steps.png 
+ 
+>> plot_steps(exp.fun3.q_newton.outputs{6}, method_names(3), "fun3");
+Steps Plot written to ../plots/Quasi-Newton's Method fun3_steps.png 

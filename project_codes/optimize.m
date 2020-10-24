@@ -53,8 +53,8 @@ for i=1:length(fun_names)
     time = toc;
     exp.(fun_names(i)).grad_descent.params = params;
     exp.(fun_names(i)).grad_descent.outputs = {x_opt, f_opt, errors, length(errors), errors(length(errors)), x_list};
-    fprintf('Best parameters:\nalpha_i = %f \tc=%f \trho=%f\n\n',params{1}, params{2}, params{3});
-    fprintf('Best results:\nf_opt = %f\tsteps=%d\tfinal error=%f \ntotal time=%f sec \ttime per iteration=%f sec\n\n',...
+    fprintf('Parameters:\nalpha_i = %f \tc=%f \trho=%f\n\n',params{1}, params{2}, params{3});
+    fprintf('Results:\nf_opt = %f\tsteps=%d\tfinal error=%f \ntotal time=%f sec \ttime per iteration=%f sec\n\n',...
              f_opt, length(errors), errors(length(errors)), time, time/length(errors));
     plot_err(errors, method_names(1), fun_names(i), exp.(fun_names(i)).extra_params{1});
 
