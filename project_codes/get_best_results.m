@@ -17,7 +17,7 @@ for i=1:exp_count
 end        
 errors_df = table(alpha_i, c, rho, f_opts, steps, final_errors);
 errors_df = sortrows(errors_df, 'f_opts', 'MissingPlacement','last');
-fprintf('\nGrid search results\n\n');
+fprintf('\nGrid search results: Top 10 by f_opts\n\n');
 disp(errors_df(1:10,:));
 
 % Best results

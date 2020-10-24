@@ -1,6 +1,6 @@
 function [best_results, best_params, errors_df] = grid_search(grid_params, method, method_args)
 grid_outputs = {};
-fprintf('\nPerforming grid search ...\n')
+fprintf('Performing grid search ...\n')
 for i=1:length(grid_params)
     params = grid_params{i};
     [x_opt, f_opt, errors, x_list] = method(method_args{[1:length(method_args)-2]}, ...

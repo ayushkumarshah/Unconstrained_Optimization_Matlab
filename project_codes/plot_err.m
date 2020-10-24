@@ -1,10 +1,10 @@
-function plot_err(errors,  method_name, function_name, varargin)
+function plot_err(errors,  method_name, function_name, y_label_type)
 figure;
 lw = 3;
 plot(errors, 'LineWidth', lw);
 title(method_name + ": Errors on " +function_name);
 xlabel("Iterations");
-if nargin == 4
+if y_label_type == "f_star"
     ylabel("Errors: |f(k) - f^*|");
 else
     ylabel("Errors: |f(k) - f(k-1)|");
