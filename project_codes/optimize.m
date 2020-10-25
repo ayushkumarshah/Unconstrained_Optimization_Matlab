@@ -31,6 +31,7 @@ rho = linspace(0.1, 0.9, 6);
 
 % Create grid for line search parameters
 grid_params = create_grid(alpha_i, c, rho);
+grid_params_qnewton = create_grid(1, c, rho);
 
 % Perform optimization for the given functions
 for i=1:length(fun_names)
@@ -78,7 +79,7 @@ for i=1:length(fun_names)
     if exp.(fun_names(i)).grid_search
         method_args = {exp.(fun_names(i)).functions{[1:2]}, exp.(fun_names(i)).x, ...
                        exp.(fun_names(i)).N, exp.(fun_names(i)).delta, exp.(fun_names(i)).extra_params{:}};
-        [~, best_params, errors_df] = grid_search(grid_params, @q_newton, method_args, fun_names(i), method_names(3));
+        [~, best_params, errors_df] = grid_search(grid_params_qnewton, @q_newton, method_args, fun_names(i), method_names(3));
         params = best_params;
         exp.(fun_names(i)).grid_search_summary = errors_df;
     else
