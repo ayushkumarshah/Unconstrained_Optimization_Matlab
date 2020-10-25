@@ -7,7 +7,8 @@ for i=1:length(grid_params)
                                      params{:}, method_args{[length(method_args)-1:length(method_args)]});
     grid_outputs{i} = {x_opt, f_opt, errors, length(errors), errors(length(errors)), x_list};
 end
-[best_results, best_params, errors_df] = get_best_results(grid_params, grid_outputs);
+[best_results, best_params, errors_df, errors_df_unsorted] = get_best_results(grid_params, grid_outputs);
 file_path = '../grid_search_results/';
 writetable(errors_df, file_path+fun_name+'_'+method_name+'.csv','Delimiter',',')
+writetable(errors_df_unsorted, file_path+fun_name+'_'+method_name+'_unsorted.csv','Delimiter',',')
 end
