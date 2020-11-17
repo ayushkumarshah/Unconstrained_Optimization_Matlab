@@ -1,6 +1,6 @@
-# Unconstrained Optimization Matlab
+# Unconstrained Optimization MATLAB
 
-## CISC 820 Quantitative Foundations: Project 2 - Unconstrained Optimization
+## Project 2 - Unconstrained Optimization: <br>CISC 820 Quantitative Foundations
 
 ## Running the code:
 
